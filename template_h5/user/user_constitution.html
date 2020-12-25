@@ -1,0 +1,84 @@
+<section class="wrap">
+  <div class="cbox">
+    <div class="hd bor">
+      <span><b class="f16">我的体质</b></span>
+      {{*
+      <em class="f12">女/偏瘦@todo</em>
+      <a href="">more</a>
+      *}}
+    </div>
+    <div class="intro">
+      <div>
+        <h3><img src="{{$intro.img}}" /></h3>
+        {{if !empty($constitution.secondary_desc)}}<div>兼有：<span class="cblue">{{$constitution.secondary_desc}}</span></div>{{/if}}
+        <p>上次测试是{{$constitution.time}}</p>
+      </div>
+      <a href="/user/intro.php">重新测试</a>
+    </div>
+  </div>
+  
+  <div class="cbox">
+    <div class="hd">
+      <span><b class="f16">{{$constitution.main}}常见症状</b></span>
+      <!--<a href="">more</a>-->
+    </div>
+    <ul class="list">
+      {{foreach $intro.con as $conOne}}
+      <li>{{$conOne}}</li>
+      {{/foreach}}
+    </ul>
+  </div>
+  
+  <div class="cbox">
+    <div class="hd">
+      <span><b class="f16">如何饮食调理</b></span>
+      <!--<b class="unfold active"></b>-->
+    </div>
+    <div class="recommend">
+      <p>我们利用营养学、中医体质养生、人工智能等技术针对您的体质、为您生成以下方案</p>
+      <a class="btn" href="/material/material_user.php">适合我的食材</a>
+      <a class="btn" href="/recipe/recipe_user.php">适合我的食谱</a>
+      <a class="btn" href="/recipe/recipe_daily.php">一周食谱参考</a>
+      <div class="prompt">
+        <h4>温馨提示</h4>
+        <p>饮食调理，要循序渐进，需要过程。建议您参照计划酌情安排饮食。</p>
+        <p class="cblue">每隔一周，您可以重新测试体质我们会为您生成一步的计划。</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="cbox share">
+    <div class="hd">
+      <span><b class="f16">分享给你关心的人</b></span>
+    </div>
+    <div class="bd">
+      <p>分享给你的家人、亲人、同学、同事、朋友、让你关系的人更健康！</p>
+      <button type="button" id="shareBtn">分享给你关心的人吧</button>
+      <div class="qrcode">
+        <div><img src="http://img.shi.hhshou.cn/common/kefu1.png"></div>
+      </div>
+      <p class="tip">如有问题咨询，请长按二维码加微信<br>或直接添加微信号<br>huanglaoshi06</p>
+    </div>
+  </div>
+</section>
+
+<div id="cover" style="display: none; width: 375px; height: 667px;"></div>
+<div id="guide" style="display: none; top: 5px;"><img src="/i/guide1.png"></div>
+<style>
+  #guide {
+    display: none;
+    position: absolute;
+    right: 18px;
+    top: 5px;
+    z-index: 19999;
+  }
+  #cover {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 18888;
+    background-color: #000000;
+    opacity: 0.7;
+  }
+</style>

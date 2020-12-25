@@ -1,0 +1,95 @@
+
+<div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd">我的食材(菜谱由下面食材生成)</div>
+    <div class="weui-panel__bd">
+        {{foreach $topCategories as $_topCate => $_materials}}
+        <div class="weui-media-box weui-media-box_text" style="padding:5px 15px 20px;">
+            <a class="weui-cell weui-cell_access weui-cell_example" href="javascript:;" style="padding:1px 15px 7px 0px;">
+                <div class="weui-cell__bd weui-cell_primary">
+                    <p style="font-size: 14px;">{{$_topCate}}</p>
+                </div>
+            </a>
+            <p class="weui-media-box__desc">
+                {{if !empty($_materials)}}
+                    {{foreach $_materials as $_material}}
+                    <span class="tags{{if $_material.selected}} actived{{/if}}{{if $_material['_uscore']>0}} green{{else if $_material['_uscore']<0}} gray{{/if}}" data-material="{{$_material['name']}}" data-score="{{$_material['_uscore']}}">
+                        <a href="javascript:void(0);">{{$_material['name']}}</a></span>
+                    {{/foreach}}
+                {{/if}}
+            </p>
+        </div>
+        {{/foreach}}
+    </div>
+</div>
+<div class="button-sp-area" style="padding:15px 0;">
+    {{if 'mine' == $from}}
+    <a href="/material/materials_mine.php" class="weui-btn weui-btn_primary" style="width:184px;line-height:40px;">保存食材</a>
+    {{else}}
+    <a href="/material/materials_shopping_list.php" class="weui-btn weui-btn_primary" style="width:184px;line-height:40px;">保存食材</a>
+    {{/if}}
+</div>
+
+<style>
+    .tags a {
+        display: block;
+        float: left;
+        border: 1px solid gray;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-radius: .3rem;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 7px 10px;
+        font-size: 14px;
+        color: #555;
+        margin: .1rem .2rem .06rem .2rem;
+    }
+    .actived a {
+        background-color:#eee;
+        color:red;
+    }
+    .green a{
+        border: 1px solid green;
+    }
+    .gray a{
+        border: 1px solid #e7e5e5;
+    }
+    .edit a {
+        display: block;
+        float: left;
+        #border: 1px solid #e7e5e5;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-radius: .3rem;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 7px 10px;
+        font-size: 14px;
+        color: #999;
+        margin: .1rem .2rem .06rem .2rem;
+    }
+</style>
+
+<script>
+$('.tags').on('click', function(e){
+    e.preventDefault();
+    var tgt = $(e.currentTarget);
+
+    var act;
+    if (tgt.hasClass('actived')) {  //不选
+        act = 'del';
+    }else{
+        act = 'add';
+    }
+
+    var param = {material : tgt.data('material'), act:act, from:'{{$from}}'};
+    K.post('/material/ajax/material_mine_act.php', param, function (res){
+        tgt.toggleClass('actived');
+    });
+
+});
+</script>

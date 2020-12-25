@@ -1,0 +1,85 @@
+
+<style>
+body {
+	background-color: #fff;
+  height: 100%;
+  overflow: auto;
+}
+html {
+  height: 100%;
+  overflow: hidden;
+}
+.q.active .hd b{
+    color: #333;
+    font-size:18px;
+    font-weight:bold;
+}
+.banner .logo {
+  position:absolute;top:0.5rem;left:0.4rem;color: white;font-size: 16px;display: flex;
+}
+.banner .logo img{
+  width:24px;height:24px;margin-right:5px;
+}
+.banner .title1 {
+  position:absolute;top:1.7rem;left:2.2rem;color: white;font-size: 26px;
+}
+.banner .title2 {
+  position:absolute;top:2.8rem;left:3rem;color: white;font-size: 26px;
+}
+.button_block {
+  display: flex;align-items: center;
+}
+</style>
+
+<section class="banner" style="position: relative;">
+  <img src="http://m.shi.hhshou.cn/i/intro1.png" style="width: 100%"/>
+  <div class="logo">
+    <img src="http://m.shi.hhshou.cn/i/logo.png"/>
+    <b>黄老食·饮食调理</b>
+  </div>
+  <div class="title1">
+    <b>根据自己的体质，</b>
+  </div>
+  <div class="title2">
+    <b>调理自己的健康!</b>
+  </div>
+</section>
+<section>
+    <div class="cbox q active">
+        {{*
+        <div class="hd">
+            <span><b class="f16">关于黄老食</b></span>
+        </div>
+        *}}
+        <div class="recommend" style="padding:15px 0 0; font-size: 17px;">
+          <p>　
+            </span></p>
+        </div>
+    </div>
+
+  <div class="cbox q active">
+    <div class="hd">
+      <span><b class="f16">先测测你的体质，再看吃什么</b></span>
+    </div>
+    <div class="recommend" style="font-size: 17px;">
+      <p>　根据你的时间，选一种方式：</p>
+      <div class="button_block">
+        <a class="btn" href="/user/constitution_test.php" style="width:4.4rem;margin:0.2rem 0.3rem 0.1rem 0.4rem;">1、详细测试</a>
+        <div>预计要10分钟<span style="color:green;">(推荐)</span></div>
+      </div>
+      <div class="button_block">
+        <a class="btn" href="/user/constitution_test.php?simple=1" style="width:4.4rem;margin:0.2rem 0.3rem 0.1rem 0.4rem;">2、快速测试</a>
+        <div>预计要2分钟</div>
+      </div>
+      <div class="button_block">
+        <a class="btn" href="/user/constitution_select.php" style="width:4.4rem;margin:0.2rem 0.3rem 0.1rem 0.4rem;">3、直接选择</a>
+        <div>我知道我的体质</div>
+      </div>
+      <div class="prompt">
+        <h4>温馨提示</h4>
+        <p>1、该测试来源为 中华中医药学会 于2009年4月9日颁布的国家标准《中医体质分类与判定》</p>
+        <p>2、“黄老食”饮食调理馆，目的是帮助大家通过饮食调理、保健，不作为治疗疾病使用</p>
+      </div>
+    </div>
+  </div>
+</section>

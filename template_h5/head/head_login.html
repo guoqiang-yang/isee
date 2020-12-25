@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<meta http-equiv="Expires" content="-1">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Pragma" content="no-cache">
+	<title>{{if $title}}{{$title}}{{else}}优氧家，健康辅材一站直供！{{/if}}</title>
+	{{$cssHtml nofilter}}
+	<script src="/js/jquery.min.js" type="text/javascript"></script>
+	<script src="/js/jquery.cookie.js" type="text/javascript"></script>
+	{{$jsHtml nofilter}}
+
+	<script>
+		var _czc = _czc || [];
+		_czc.push(["_setAccount", "1260699390"]);
+	</script>
+</head>
+
+<body>
+<input type="hidden" id="_cur_cid" value="{{$_user.cid|string_format :'%d'}}" />
+<input type="hidden" id="_cur_uid" value="{{$_uid|string_format :'%d'}}" />
+<pre style="display: none;" id="user_cart">
+    {{$user_cart}}
+</pre>

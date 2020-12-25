@@ -1,0 +1,53 @@
+<div class="container" id="container">
+    {{*
+    <div class="page__bd">
+        <div class="weui-cells__title">饮食指导</div>
+
+        <div class="weui-cells">
+            <a class="weui-cell weui-cell_access" href="http://m.shi.hhshou.cn/recipe0/recipes_daily.php" target="_blank">
+                <div class="weui-cell__bd">
+                    <p>三餐食谱</p>
+                </div>
+                <div class="weui-cell__ft">可规划一周食谱</div>
+            </a>
+            <a class="weui-cell weui-cell_access" href="http://m.shi.hhshou.cn/material0/materials_mine.php" target="_blank">
+                <div class="weui-cell__bd">
+                    <p>在吃的食材</p>
+                </div>
+                <div class="weui-cell__ft">食材规划</div>
+            </a>
+            <a class="weui-cell weui-cell_access" href="http://m.shi.hhshou.cn/material0/materials_shopping_list.php" target="_blank">
+                <div class="weui-cell__bd">
+                    <p>采购清单</p>
+                </div>
+                <div class="weui-cell__ft">来自在吃的食材</div>
+            </a>
+        </div>
+    </div>
+    *}}
+
+    <div class="page__bd">
+        <div class="weui-cells__title">针对：({{$_user['name']}}:{{$_user['constitution']}})</div>
+
+        <div class="weui-cells">
+            <a class="weui-cell weui-cell_access" href="http://m.shi.hhshou.cn/material0/materials_to_me.php" target="_blank">
+                <div class="weui-cell__bd">
+                    <p>适合我的食材</p>
+                </div>
+                <div class="weui-cell__ft">源于体质</div>
+            </a>
+            <a class="weui-cell weui-cell_access" href="http://m.shi.hhshou.cn/material0/materials_to_me.php?type=bad" target="_blank">
+                <div class="weui-cell__bd">
+                    <p>不适合我的食材</p>
+                </div>
+                <div class="weui-cell__ft">源于体质</div>
+            </a>
+            <a class="weui-cell weui-cell_access" href="http://m.shi.hhshou.cn/recipe0/recipes_mine.php" target="_blank">
+                <div class="weui-cell__bd">
+                    <p>适合我的菜谱</p>
+                </div>
+                <div class="weui-cell__ft">源于体质</div>
+            </a>
+        </div>
+    </div>
+</div>

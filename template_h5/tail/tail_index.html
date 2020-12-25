@@ -1,0 +1,27 @@
+<section class="nav_bar f12">
+	<ul>
+		<li class="{{if $is_index}}active{{/if}}"><a href="/index/index.php" onclick="_czc.push(['_trackEvent', '主导航', '点击', '首页', '', '']);">首页</a></li>
+		<li class="{{if $is_mall}}active{{/if}}"><a href="/shop/mall.php?cate1=5&cate2=501" onclick="_czc.push(['_trackEvent', '主导航', '点击', '分类', '', '']);">分类</a></li>
+        <li class="{{if $is_quick}}active{{/if}}"><a href="/shop/choose_brand.php" onclick="_czc.push(['_trackEvent', '主导航', '点击', '快速下单', '', '']);">快速下单</a></li>
+        <li class="{{if $is_cart}}active{{/if}}"><a href="/order/check_products.php" onclick="_czc.push(['_trackEvent', '主导航', '点击', '购物车', '', '']);">购物车<b {{if $total>0}}style="display: inline;"{{/if}} id="count" class="f12 dn">{{if $total>99}}99+{{else}}{{$total}}{{/if}}</b></a></li>
+		<li class="{{if $is_user_center}}active{{/if}}"><a href="/user/center.php" onclick="_czc.push(['_trackEvent', '主导航', '点击', '我的', '', '']);">我的</a></li>
+	</ul>
+</section>
+<script>
+	(function (K) {
+		if (K) {
+			K.Env = K.Env || {};
+
+			K.mix(K.Env, {
+				'_www_host': "{{$jsEnv.wwwHost}}"
+			});
+		}
+	}(K));
+</script>
+{{$jsHtml nofilter}}
+<a class="toTop" href="#top"></a>
+<div style="display: none">
+	<script src="https://s11.cnzz.com/z_stat.php?id=1260699390&web_id=1260699390" language="JavaScript"></script>
+</div>
+</body>
+</html>

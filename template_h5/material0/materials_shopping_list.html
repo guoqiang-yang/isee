@@ -1,0 +1,61 @@
+<div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd">我的采购清单</div>
+    <div class="weui-panel__bd">
+        {{foreach $topCategories as $_topCate => $_materials}}
+        <div class="weui-media-box weui-media-box_text" style="padding:5px 15px 20px;">
+            <a class="weui-cell weui-cell_access weui-cell_example" href="/material/materials_choose.php?top_cate={{$_topCate}}&from=shopping_list" style="padding:1px 15px 7px 0px;">
+                <div class="weui-cell__bd weui-cell_primary">
+                    <p style="font-size: 14px;">{{$_topCate}}</p>
+                </div>
+                <span class="weui-cell__ft"></span>
+            </a>
+            <p class="weui-media-box__desc">
+                {{if !empty($_materials)}}
+                    {{foreach $_materials as $_material}}
+                    <span class="tags"><a href="javascript:void(0);">{{$_material}}</a></span>
+                    {{/foreach}}
+                {{/if}}
+            </p>
+        </div>
+        {{/foreach}}
+    </div>
+</div>
+
+<style>
+.tags a {
+    display: block;
+    float: left;
+    border: 1px solid #e7e5e5;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: .3rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 7px 10px;
+    font-size: 14px;
+    color: #555;
+    margin: .1rem .2rem .06rem .2rem;
+}
+.tags a.actived {
+    background-color:#eee;
+    color:red;
+}
+.edit a {
+    display: block;
+    float: left;
+    #border: 1px solid #e7e5e5;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: .3rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 7px 10px;
+    font-size: 14px;
+    color: #999;
+    margin: .1rem .2rem .06rem .2rem;
+}
+</style>

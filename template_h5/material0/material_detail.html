@@ -1,0 +1,37 @@
+<?php
+include_once('../../global.php');
+require_once "../../include/vendor/weixin/jssdk/jssdk.php";
+
+
+class App extends App_H5_Page
+{
+    protected $headTmpl = 'head/head_none.html';
+    protected $tailTmpl = 'tail/tail_none.html';
+    protected $words;
+
+    protected function getPara()
+    {
+        $this->title = '我要求助';
+    }
+
+    protected function main()
+    {
+        $this->addHeadJs(array('js/h5/base.js'));
+        $this->addCss(array('css/h5/weui.css'));
+    }
+
+    protected function outputBody()
+    {
+        //$jssdk = new JSSDK(WX_APP_ID, WX_APP_SECRET);
+        //$signPackage = $jssdk->GetSignPackage();
+        //Tool_Log::addFileLog('jiameng', WX_APP_SECRET);
+        //Tool_Log::addFileLog('jiameng', json_encode($signPackage));
+
+        //$this->smarty->assign('sign_package', $signPackage);
+        //$this->smarty->assign('title_words', $this->words);
+        $this->smarty->display('h5/need_help_ok.html');
+    }
+}
+
+$app = new App('pub');
+$app->run();

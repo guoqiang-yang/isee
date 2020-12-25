@@ -1,0 +1,77 @@
+<section class="top_menu">
+  <div class="menu_list date f20" id="menuList">
+    <ul>
+      {{foreach $date_list as $date_info}}
+      <li {{if $date_info.is_selected}}class="active"{{/if}}>
+        <a href="/recipe/recipe_daily.php?date={{$date_info.date}}">
+          <span>{{$date_info.show}}</span>
+        </a>
+      </li>
+      {{/foreach}}
+    </ul>
+  </div>
+  <button id="rollBtn" type="button"></button>
+</section>
+
+<section class="container">
+  <div class="title_mine f16">
+    <span>根据：<em>{{$_user.name}}</em>的体质计算</span>
+  </div>
+  {{foreach $daily_recipes as $key => $recipeList}}
+  <div class="md md2 mdp">
+    <div class="title">
+      <span><b class="f18">{{$daily_section_desc[$key]}}</b></span>
+      <!--<a class="f14" href=""><b>添加</b></a>-->
+      <!--<a class="f14" href=""><b>编辑</b></a>-->
+    </div>
+    <ul>
+      {{foreach $recipeList as $recipeInfo}}
+      <li>
+        <a href="/recipe/recipe_detail.php?rid={{$recipeInfo.id}}">
+          <div class="pic">
+            <img src="{{$recipeInfo.picurl}}">
+          </div>
+          <div class="info f13">
+            <h3 class="f18">{{$recipeInfo.name}}</h3>
+            <div class="tags">
+              {{foreach $recipeInfo._tcm_good_tags as $_tcm_tag}}
+              <span><b>{{$_tcm_tag}}</b></span>
+              {{/foreach}}
+            </div>
+            <p class="truncat">{{$recipeInfo.nutrient_tags|default: ''}}</p>
+          </div>
+        </a>
+      </li>
+      {{/foreach}}
+    </ul>
+  </div>
+  {{/foreach}}
+  
+  <div class="md md3">
+    <div class="hd f18"><span>方案点评</span></div>
+    {{foreach $analy_datas as $key => $analys}}
+    <div class="content f13">
+      <h4><span><b class="f16">{{if $key=='today'}}今日{{else}}{{$week_name}}{{/if}}食谱分析</b></span></h4>
+      <div class="tags">
+        {{foreach $analys.tcm_good_tags as $tcmGoodTags => $tcmVal}}
+        <span><b>{{$tcmGoodTags}}</b></span>
+        {{/foreach}}
+      </div>
+      <h5>涵盖<strong>{{$analys.material}}</strong>种食材</h5>
+      <table>
+        <tr>
+          {{foreach $analys.stat_cate as $cateKey => $cateVal}}
+          <th>{{$cateKey}}</th>
+          {{/foreach}}
+        </tr>
+        <tr>
+          {{foreach $analys.stat_cate as $cateKey => $cateVal}}
+          <td>{{$cateVal}}</td>
+          {{/foreach}}
+        </tr>
+      </table>
+      <p>{{$analys.nutrient_tags}}等</p>
+    </div>
+    {{/foreach}}
+  </div>
+</section>

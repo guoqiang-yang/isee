@@ -1,0 +1,68 @@
+
+<style>
+.test_radio a {
+  margin: 0.1rem 0;
+  display: inline-block;
+}
+</style>
+
+<section class="head">
+    <div style="margin: 0 auto;text-align: center;padding: 20px 0 15px;background: #4d9746;color: white;">
+      <b style="font-size: 20px;display: block;">描述您的情况，推荐更精准</b>
+    </div>
+</section>
+<section>
+    <div class="cbox q active">
+        <div class="hd">
+            <span><b class="f16">您有以下状况或慢病么？</b></span>
+        </div>
+        <div class="test_radio" style="text-align: left;margin:0;">
+          {{foreach $show_effect['disease'] as $diseaseName}}
+          <a class="expect" href="#" data-val="{{$diseaseName}}">{{$diseaseName}}</a>
+          {{/foreach}}
+        </div>
+    </div>
+
+  <div class="cbox q active">
+    <div class="hd">
+      <span><b class="f16">您有下面哪些期望？</b></span>
+    </div>
+    <div class="test_radio" style="text-align: left;margin:0;">
+      <div class="test_radio" style="text-align: left;margin:0;">
+        {{foreach $show_effect['expect'] as $expectName}}
+        <a class="expect" href="#" data-val="{{$expectName}}">{{$expectName}}</a>
+        {{/foreach}}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="cbox submit">
+      <button type="button" id="submit">保存</button>
+  </div>
+</section>
+
+<script>
+
+  $('.expect').on('click', function(){
+    if ($(this).hasClass('selected')) {
+      $(this).removeClass('selected');
+    } else {
+      $(this).addClass('selected');
+    }
+  });
+
+  $('#submit').bind('click', function(){
+    var effect = [];
+    $('.selected').each(function(){
+      effect.push($(this).data('val'));
+    })
+    
+    K.post('/user/ajax/save_effect.php', {effect: JSON.stringify(effect)}, function(ret){
+      window.location.href = ret.url;
+    });
+  });
+
+</script>

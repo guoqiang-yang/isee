@@ -1,0 +1,215 @@
+<style>
+  ol, ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .small_tag{
+    display: inline-block;
+    border: 1px solid #e7e5e5;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: .3rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 5px 8px;
+    font-size: 14px;
+    color: #555;
+    margin: .1rem .2rem .06rem .2rem;
+  }
+
+  .material{
+    width: 100%;
+    padding:0 5px;
+    overflow: hidden;
+  }
+  .material li {
+    float: left;
+    width: 25%;
+    cursor: pointer;
+    padding: 8px;
+  }
+  .flex_dircol_spbet {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+  .material li img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  .material li a p {
+    font-size: 16px;
+    color: #444;
+    letter-spacing: 0;
+    text-align: center;
+    font-weight: 700;
+    margin: .08rem 0;
+  }
+  .text_overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .material li span {
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    color: #888;
+  }
+  *, :after, :before {
+    box-sizing: border-box;
+    margin: 0;
+  }
+  .auxiliary {
+    width: 100%;
+    overflow: hidden;
+    /*padding: 0 12px;*/
+  }
+  .auxiliary li {
+    width: 50%;
+    float: left;
+    background: #fafafa;
+    overflow: hidden;
+    border: .026667rem solid #eee;
+    cursor: pointer;
+    padding:4px 8px;
+  }
+  .auxiliary li {
+    font-size: 16px;
+    color: #444;
+  }
+  .auxiliary li span:nth-child(2) {
+    float: right;
+    font-size: 16px;
+    color: #888;
+    margin-right: 5px;
+  }
+  .step_desc {
+    font-size:20px;
+    color:#333;
+  }
+  .md2 {
+    margin-bottom: 0.1rem;
+  }
+  .md2 .title {
+    height: 1.2667rem;
+  }
+  .md2 .title span {
+    margin-top: 0.38rem;
+  }
+  .md li {
+    border-bottom:none;
+  }
+  .step {
+    padding: 15px 0;
+    position: relative;
+  }
+  .step .desc{
+    flex:1;
+    font-size: 20px;
+    color: #333;
+  }
+  .step .desc strong {
+    color: green;
+    font-style: italic;
+    font-size: 22px;
+  }
+  .step .p {
+    width: 110px;
+    height: auto;
+    margin-right: .8em;
+  }
+  .step .p img{
+    width: 100%;
+    max-height: 100%;
+    vertical-align: top;
+  }
+
+</style>
+
+<section>
+  <div class="md md2" style="padding-right:0.1rem;">
+    <ul>
+      <li>
+        <a href="javascript:;" style="padding-right:0;">
+          <div class="pic" style="width:100px;height:100px;border-radius:0;">
+            <img src="{{$recipe_detail.picurl}}">
+          </div>
+          <div class="info f13" style="padding-left:110px;">
+            <h3 class="f22" style="padding-bottom:5px;font-weight:bold;">{{$recipe_detail.name}}</h3>
+            <div class="tags">
+              {{foreach $recipe_detail._tcm_good_tags as $_tcm_tag}}
+              <span class="green"><b>{{$_tcm_tag}}</b></span>
+              {{/foreach}}
+            </div>
+            <p style="font-size: 14px;">{{$recipe_detail.nutrient_tags}}</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="md md2">
+    <div class="title">
+      <span><b class="f18">食材</b></span>
+    </div>
+    <div>
+      <ul class="material">
+        {{foreach $recipe_detail._materials.main as $mainName => $mainInfo}}
+        <li style="text-align:center;">
+          <a href="/material/material_detail.php?mid={{$mainInfo.mid}}" class="flex_dircol_spbet">
+            <img src="{{$mainInfo.picurl}}" alt="">
+            <p class="text_overflow">{{$mainName}}</p>
+            <span>{{$mainInfo.amount}}</span>
+          </a>
+        </li>
+        {{/foreach}}
+      </ul>
+    </div>
+
+    {{if !empty($recipe_detail._materials.auxiliary)}}
+    <div style="padding-bottom:15px;">
+      <ul class="auxiliary">
+        {{foreach $recipe_detail._materials.auxiliary as $auxiliaryName => $auxiliaryInfo}}
+        <li style="border: .026667rem solid #eee;">
+          <span href="javascript:;" class="">
+            <span>{{$auxiliaryInfo.show_name}}</span>
+            <span>{{$auxiliaryInfo.amount}}</span>
+          </span>
+        </li>
+        {{/foreach}}
+      </ul>
+    </div>
+    {{/if}}
+  </div>
+
+  <div class="md2" style="padding: 0 0.4rem;background: #fff;">
+    <div class="title">
+      <span><b class="f18">步骤</b></span>
+    </div>
+    <ul>
+      {{foreach $recipe_detail.step as $stepInfo}}
+      <li>
+        <a href="javascript:;" class="step" style="display: flex;">
+          <div class="p"><img src="{{$stepInfo.picurl}}"></div>
+          <div class="desc">
+            <p class=""><strong>{{$stepInfo@index+1}}、</strong>{{$stepInfo.op}}</p>
+          </div>
+        </a>
+      </li>
+      {{/foreach}}
+    </ul>
+  </div>
+
+</section>
+
+
+

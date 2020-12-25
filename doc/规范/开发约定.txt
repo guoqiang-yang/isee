@@ -1,0 +1,27 @@
+代码开发约定与规范
+
+一、核心模块与调用
+1、API层(模块接口)
+	其他模块、htdocs调用本模块，只能通过API层。
+
+2、Func层(业务逻辑)
+	仅限本模块(目录)调用。
+	问题：如何访问？魔法方法 vs getInstance vs new vs 直接调用func的static方法?
+	
+3、Model层(数据层)
+	定义为dao，不额外实现。
+	API层和Func都可以调用。
+
+4、例外
+	后台脚本(script)不受这个限制，可以直接调用API/Func/Model层。
+	后台管理系统admin呢? 受这个限制么？
+
+二、其他
+1、配置文件
+	统一放在 include/conf/
+
+2、后台脚本
+	统一放在 script/
+	
+
+	

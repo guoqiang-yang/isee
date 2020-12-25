@@ -1,0 +1,40 @@
+<div id="pageOfRecipeUser" data-cate_name="{{$cate_name}}"></div>
+<section class="top_menu">
+  <div class="menu_list f20" id="menuList">
+    <ul>
+      {{foreach $main_categorys as $cateName}}
+      <li {{if $cateName == $cate_name}} class="active"{{/if}}>
+      <a href="/recipe/recipe_user.php?cate_name={{$cateName}}"><span>{{$cateName}}</span></a>
+      </li>
+      {{/foreach}}
+    </ul>
+  </div>
+  <button id="rollBtn" type="button"></button>
+</section>
+
+
+<section class="container bg_white">
+  <div id="userRecipeArea" class="md mdp">
+    <!--{{*
+    <ul>
+      {{foreach $recipe_list.list as $recipe}}
+      <li scr="{{$recipe._score}}">
+        <a href="/recipe/recipe_detail.php?rid={{$recipe.id}}">
+          <div class="pic"><img src="{{$recipe.picurl}}"></div>
+          <div class="info f13">
+            <h3 class="f18">{{$recipe.name}}</h3>
+            <div class="tags">
+              {{foreach $recipe._tcm_good_tags as $_tcm_tag}}
+              <span class="green"><b>{{$_tcm_tag}}</b></span>
+              {{/foreach}}
+            </div>
+            <p class="truncat">{{$recipe.nutrient_tags}}</p>
+          </div>
+        </a>
+      </li>
+      {{/foreach}}
+    </ul>
+    *}}-->
+  </div>
+  <div id="getMoreRcmdRecipeList"></div>
+</section>

@@ -1,0 +1,116 @@
+
+<style>
+    .tags a {
+        display: block;
+        float: left;
+        border: 1px solid #e7e5e5;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-radius: .3rem;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0 1.55%;
+        font-size: .125rem;
+        color: #bbb;
+        margin: .1rem .2rem .06rem .2rem;
+        width: 12%;
+    }
+    .tags a.actived {
+        background-color:#eee;
+        color:red;
+    }
+    .weui-panel__hd:after {
+        border-bottom: none;
+    }
+    .weui-media-box__title img {
+        float: right;
+        padding:3px 0 0 8px;
+        vertical-align: middle;
+    }
+    .cate_op{
+        text-align: center;
+    }
+    .cate_op a{
+        color:gray;
+    }
+    .cate_op a img, .cate_op a span {
+        vertical-align: middle;
+    }
+    .cate_op a img {
+        margin:0 3px;
+    }
+</style>
+
+<div class="weui-navbar" style="position:relative;">
+    {{foreach $date_tags as $_date_tag}}
+    <div class="weui-navbar__item{{if $_date_tag.date==$cur_date}} weui-bar__item_on{{/if}} date_navi" data-date="{{$_date_tag.date}}" data-from_date="{{$_date_tag.from_date}}">{{$_date_tag.name}}</div>
+    {{/foreach}}
+</div>
+
+{{for $cate=1 to 3}}
+<div class="weui-panel__hd" style="padding:14px 8px 2px;color:#666;">{{if 1==$cate}}营养早餐{{elseif 2==$cate}}丰盛午餐{{else}}滋补晚餐{{/if}}</div>
+
+<div class="weui-panel__bd" style="border-top:1px solid #E5E5E5;margin-top:5px;">
+    {{foreach $daily_recipes[$cate] as $recipe}}
+    <a href="/recipe/recipe_detail.php?rid={{$recipe.id}}" class="weui-media-box weui-media-box_appmsg recipe_box">
+        <div class="weui-media-box__hd" style="width:60px;height:60px;">
+            <img class="weui-media-box__thumb" src="{{$recipe.picurl}}" alt="">
+        </div>
+        <div class="weui-media-box__bd">
+            <h4 class="weui-media-box__title" style="font-size:20px;margin-bottom:3px;">
+                {{$recipe.name}}
+                <img src="/i/del.png" class="btn_del_recipe" data-id="{{$recipe.udrid}}"/>
+                <img src="/i/refresh.png" class="btn_refresh_recipe" data-id="{{$recipe.udrid}}"/>
+            </h4>
+            {{*<p class="weui-media-box__desc" style="font-size:16px;margin-top:3px;">原料：
+                {{foreach $recipe._materials.main as $materialName => $material}}
+                    <span>{{$materialName}}</span>
+                    {{if !$material@last}},{{/if}}
+                {{/foreach}}
+            </p>*}}
+            <p class="weui-media-box__desc" style="font-size:16px;margin-top:3px;">适合：
+                {{foreach $recipe._constitution_good as $_con}}
+                <span>{{$_con}}</span>
+                {{if !$_con@last}},{{/if}}
+                {{/foreach}}
+            </p>
+        </div>
+    </a>
+    {{/foreach}}
+    <div class="cate_op">
+        <a href="/recipe/recipe_choose.php?mode=add&date={{$cur_date}}&cate={{$cate}}&from={{$smarty.server.REQUEST_URI|escape:'url'}}"><img src="/i/add.png" style="width:18px;"><span>增加1个菜谱</span></a>
+        <a href="/material/materials_mine.php"><img src="/i/cart.png" style="width:20px;padding-left:10px;"><span>先选食材</span></a>
+    </div>
+
+</div>
+
+{{/for}}
+<div style="height: 60px;"></div>
+
+<script>
+$('.date_navi').on('click', function(e){
+    var tgt = $(e.currentTarget);
+    var date = tgt.data('date');
+    var from_date = tgt.data('from_date');
+    window.location.href = "/recipe/recipes_daily.php?date=" + date + "&from_date=" + from_date;
+});
+$('.btn_refresh_recipe').on('click', function(e){
+    e.preventDefault();
+    var tgt = $(e.currentTarget);
+    var udrid = tgt.data('id');
+    window.location.href = "/recipe/recipe_choose.php?mode=refresh&date={{$cur_date}}&from={{$smarty.server.REQUEST_URI|escape:'url'}}&udrid=" + udrid;
+});
+$('.btn_del_recipe').on('click', function(e){
+    e.preventDefault();
+    var tgt = $(e.currentTarget);
+    if (window.confirm('确定删除这个菜谱？')) {
+        var param = {udrid : tgt.data('id')};
+        K.post('/recipe/ajax/recipe_daily_delete.php', param, function (res){
+            tgt.closest('.recipe_box').remove();
+        });
+    }
+
+});
+</script>

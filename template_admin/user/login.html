@@ -1,0 +1,76 @@
+<!-- HOME -->
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        
+        <div class="wrapper-page">
+          
+          <div class="account-pages">
+            <div class="account-box">
+              <div class="account-logo-box">
+                <h2 class="text-uppercase text-center">
+                  <a href="index.html" class="text-success">
+                    <!--span><img src="assets/images/logo_dark.png" alt="" height="18"></span-->
+                    <h3>黄老食</h3>
+                  </a>
+                </h2>
+                <h6 class="text-uppercase text-center font-bold mt-4">登  录</h6>
+              </div>
+              <div class="account-content">
+                <form class="form-horizontal" action="ajax/login.php" method="post">
+                  
+                  <div class="form-group m-b-20 row">
+                    <div class="col-12">
+                      <label for="useraccount">账号</label>
+                      <input class="form-control" type="mobile" id="useraccount" name="mobile" {{if !empty($mobile)}}value={{$mobile}}{{/if}} required="" placeholder="请输入账号">
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row m-b-20">
+                    <div class="col-12">
+                      <a href="page-recoverpw.html" class="text-muted pull-right"><small>忘记密码？</small></a>
+                      <label for="password">密码</label>
+                      <input class="form-control" type="password" required="" id="password" name="password" placeholder="请输入密码">
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row m-b-20">
+                    <div class="col-12">
+                      
+                      <div class="checkbox checkbox-success">
+                        <input id="remember" type="checkbox" checked="">
+                        <label for="remember">
+                          Remember me
+                        </label>
+                      </div>
+                    
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row text-center m-t-10">
+                    <div class="col-12">
+                      <button class="btn btn-block btn-gradient waves-effect waves-light" type="submit">登  录</button>
+                    </div>
+                  </div>
+                  {{if !empty($login_errmsg)}}
+                  <div class="alert alert-warning" role="alert">
+                    {{$login_errmsg}}
+                  </div>
+                  {{/if}}
+                </form>
+              </div>
+              
+            </div>
+          </div>
+          <!-- end card-box-->
+        
+        
+        </div>
+        <!-- end wrapper -->
+      
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END HOME -->

@@ -1,0 +1,110 @@
+<style>
+    .pagination {
+        display: inline-block;
+        padding-left: 0;
+        margin: 20px 0;
+        border-radius: 4px;
+    }
+    .pagination>li {
+        display: inline;
+    }
+    .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+        z-index: 2;
+        color: #fff;
+        cursor: default;
+        background-color: #337ab7;
+        border-color: #337ab7;
+    }
+    .pagination>li>a, .pagination>li>span {
+        position: relative;
+        float: left;
+        padding: 6px 12px;
+        margin-left: -1px;
+        line-height: 1.42857143;
+        color: #337ab7;
+        text-decoration: none;
+        background-color: #fff;
+        border: 1px solid #ddd;
+    }
+</style>
+
+<div class="weui-panel__bd">
+    <div class="weui-search-bar weui-search-bar_focusing" id="searchBar">
+        <form class="weui-search-bar__form" action="/recipe/recipe_search_result.php">
+            <div class="weui-search-bar__box">
+                <i class="weui-icon-search"></i>
+                <input type="search" name="keyword" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="" value="{{$keyword}}">
+                <input type="hidden" name="cate" value="{{$cate}}">
+                <input type="hidden" name="mode" value="{{$mode}}">
+                <input type="hidden" name="date" value="{{$date}}">
+                <input type="hidden" name="from" value="{{$from}}">
+                <input type="hidden" name="udrid" value="{{$udrid}}">
+                <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+            </div>
+            <label class="weui-search-bar__label" id="searchText">
+                <i class="weui-icon-search"></i>
+                <span>搜索</span>
+            </label>
+        </form>
+        <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">搜索</a>
+    </div>
+</div>
+
+<div class="weui-panel__bd" style="border-top:1px solid #E5E5E5;margin-top:5px;">
+    {{foreach $recipes as $recipe}}
+    <a href="/recipe/recipe_detail.php?rid={{$recipe.id}}" class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__hd" style="width:100px;height:100px;">
+            <img class="weui-media-box__thumb" src="{{$recipe.picurl}}" alt="">
+        </div>
+        <div class="weui-media-box__bd">
+            <h4 class="weui-media-box__title" style="font-size:20px;margin-bottom:3px;">
+                {{$recipe.name}}
+                <img src="/i/selected.png" class="select_recipe" data-id="{{$recipe.id}}"/>
+            </h4>
+            <p class="weui-media-box__desc" style="font-size:16px;margin-top:3px;">原料：
+                {{foreach $recipe._materials.main as $materialName => $material}}
+                <span>{{$materialName}}</span>
+                {{if !$material@last}},{{/if}}
+                {{/foreach}}
+            </p>
+            <p class="weui-media-box__desc" style="font-size:16px;margin-top:3px;">适合：
+                {{foreach $recipe._constitution_good as $_con}}
+                <span>{{$_con}}</span>
+                {{if !$_con@last}},{{/if}}
+                {{/foreach}}
+            </p>
+        </div>
+    </a>
+    {{/foreach}}
+</div>
+
+<nav>
+    <ul class="pagination">
+        {{$pageHtml nofilter}}
+        <li><a style="color:#555555;">共{{$total|string_format:"%d"}}个</a></li>
+    </ul>
+</nav>
+
+
+<script>
+    $('.select_recipe').on('click', function(e){
+        e.preventDefault();
+        var tgt = $(e.currentTarget);
+        var rid = tgt.data('id');
+        var param = {rid : rid, from:'{{$from}}', cate:'{{$cate}}', date:'{{$date}}', mode:'{{$mode}}', udrid:'{{$udrid}}' };
+        K.post('/recipe/ajax/recipe_choose.php', param, function (res){
+            window.location.href = decodeURIComponent(res.ret_url);
+        });
+    });
+
+    $('#searchCancel').on('click', function(e){
+        e.preventDefault();
+        var tgt = $(e.currentTarget);
+        var keyword = $('#searchInput').val();
+        if (K.trim(keyword).length == 0) {
+            alert('请输入搜索词');
+            return;
+        }
+        $('#searchBar').find('form').submit();
+    });
+</script>

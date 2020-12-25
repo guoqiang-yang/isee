@@ -1,0 +1,143 @@
+<style>
+ol, ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.small_tag{
+    display: inline-block;
+    border: 1px solid #e7e5e5;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: .3rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 5px 8px;
+    font-size: 14px;
+    color: #555;
+    margin: .1rem .2rem .06rem .2rem;
+}
+
+.material{
+    width: 100%;
+    padding:0 5px;
+    overflow: hidden;
+}
+.material li {
+    float: left;
+    width: 25%;
+    cursor: pointer;
+    padding: 8px;
+}
+.flex_dircol_spbet {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+.material li img {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+}
+.material li a p {
+    font-size: 16px;
+    color: #444;
+    letter-spacing: 0;
+    text-align: center;
+    font-weight: 700;
+    margin: .08rem 0;
+}
+.text_overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.material li span {
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    color: #888;
+}
+*, :after, :before {
+    box-sizing: border-box;
+    margin: 0;
+}
+.auxiliary {
+    width: 100%;
+    overflow: hidden;
+    padding: 0 12px;
+}
+.auxiliary li {
+    width: 50%;
+    float: left;
+    background: #fafafa;
+    overflow: hidden;
+    border: .026667rem solid #eee;
+    cursor: pointer;
+    padding:4px 8px;
+}
+.auxiliary li {
+    font-size: 16px;
+    color: #444;
+}
+.auxiliary li span:nth-child(2) {
+    float: right;
+    font-size: 14px;
+    color: #888;
+    margin-right: 5px;
+}
+.step_desc {
+    font-size:18px;
+    color:#333;
+}
+</style>
+
+<div class="weui-panel__bd">
+    <a href="/recipe/recipe_detail.php?rid={{$recipe.id}}" class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__hd" style="width:100px;height:100px;">
+            <img class="weui-media-box__thumb" src="{{$recipe.picurl}}" alt="">
+        </div>
+        <div class="weui-media-box__bd">
+            <h4 class="weui-media-box__title" style="font-size:20px;margin-bottom:3px;">{{$recipe.name}}</h4>
+            <p class="weui-media-box__desc">
+                {{foreach $recipe.tags as $_tag}}
+                <span class="small_tag">{{$_tag}}</span>
+                {{/foreach}}
+            </p>
+        </div>
+    </a>
+</div>
+<div class="weui-cells__title">主食材</div>
+<div>
+    <ul class="material" >
+        {{foreach $recipe._materials.main as $materialName => $material}}
+        <li>
+            <a href="/food/1215" class="flex_dircol_spbet">
+                <img src="{{$material.picurl}}" alt="">
+                <p class="text_overflow">{{$materialName}}</p>
+                <span>{{$material._score}}</span>
+            </a>
+        </li>
+        {{/foreach}}
+    </ul>
+</div>
+
+<div class="weui-cells__title">辅食材</div>
+<div>
+    <ul class="auxiliary">
+        {{foreach $recipe._materials.auxiliary as $materialName => $material}}
+        <li>
+            <a href="/search/result?keyword=%E6%B2%B9" class="">
+                <span>{{$materialName}}</span>
+                <span>{{$material._score}}</span>
+            </a>
+        </li>
+        {{/foreach}}
+    </ul>
+</div>

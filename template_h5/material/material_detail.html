@@ -1,0 +1,55 @@
+
+<section>
+  <div class="md md2">
+    <ul>
+      <li>
+        <a href="javascript:;">
+          <div class="pic_round" style="width: 2rem;height: 2rem;"><img src="{{$material_detail.picurl}}"></div>
+          <div class="info2 f13">
+            <h3 class="f22">{{$material_detail.name}}</h3>
+            <div class="tags">
+              {{foreach $material_detail._tcm_good_tags as $_tcm_tag}}
+              <span class="green"><b>{{$_tcm_tag}}</b></span>
+              {{/foreach}}
+            </div>
+            <p style="line-height: 1.5;font-size: 14px;">{{$material_detail.nutrient_tags}}</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="md md2">
+    <div class="title">
+      <span><b class="f18">食材功效</b></span>
+    </div>
+    <div style="padding:0.6rem 0;font-size: 14px;line-height:1.8">
+      {{$material_detail.nutritive_value nofilter}}
+    </div>
+  </div>
+  
+  <div class="md md2 mdp">
+    <div class="title">
+      <span><b class="f18">{{$material_detail.name}}食谱</b></span>
+    </div>
+    <ul>
+      {{foreach $recipes as $recipe}}
+      <li>
+        <a href="/recipe/recipe_detail.php?rid={{$recipe.id}}">
+          <div class="pic"><img src="{{$recipe.picurl}}"></div>
+          <div class="info f13">
+            <h3 class="f18">{{$recipe.name}}</h3>
+            <!--div class="tags">
+              {{foreach $material_detail.constitution_good as $tagName =>$tagVal}}
+              <span class="green"><b>{{$tagName}}</b></span>
+              {{/foreach}}
+            </div-->
+            <p>{{$recipe.tags}}.</p>
+          </div>
+        </a>
+      </li>
+      {{/foreach}}
+    </ul>
+  </div>
+
+</section>

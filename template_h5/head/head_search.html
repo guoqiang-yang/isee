@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta http-equiv="Expires" content="-1">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta name="format-detection" content="telephone=no, email=no" />
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<title>{{if $title}}{{$title}}{{else}}优氧家，健康辅材一站直供！{{/if}}</title>
+	<script src="/js/jquery.min.js" type="text/javascript"></script>
+	<script src="/js/jquery.cookie.js" type="text/javascript"></script>
+	<script src="/js/swiper.min.js?v=1" type="text/javascript"></script>
+	{{$jsHtml nofilter}}
+    <script src="/js/zepto.autocomplete.js" type="text/javascript"></script>
+	{{$cssHtml nofilter}}
+
+	<script>
+		var _czc = _czc || [];
+		_czc.push(["_setAccount", "1260699390"]);
+	</script>
+</head>
+
+<body>
+<input type="hidden" id="cur_city" value="{{$cur_city}}"/>
+
+
+<header class="search_header">
+	{{if $is_index}}
+	<div class="ads f17" id="city_name">{{$cur_city}}</div>
+	{{else}}
+	<div class="f17" style="float: left;height: 100%;padding-left: 0.2rem;position: relative;"></div>
+	{{/if}}
+	<a href="/shop/search.php" id="header_search_input">
+		<div class="search_item"><input id="iptSearch" type="text" class="f14" placeholder="搜商品、找品牌"></div>
+	</a>
+</header>
+
+<input type="hidden" id="_cur_cid" value="{{$_user.cid|string_format :'%d'}}" />
+<input type="hidden" id="_cur_uid" value="{{$_uid|string_format :'%d'}}" />
+<pre style="display: none;" id="user_cart">
+    {{$user_cart}}
+</pre>
+<input type="hidden" id="total_price" value="{{$total_price}}"/>
+<input type="hidden" id="total_num" value="{{$total_num}}"/>

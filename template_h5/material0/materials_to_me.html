@@ -1,0 +1,121 @@
+
+<div class="tags" style="margin:5px;line-height:2;" data-type="{{$conf_type}}">
+    <a href="/material0/materials_to_me.php?type=good&cate_name={{$cate_name}}" {{if $conf_type=='good'}}class="actived"{{/if}} style="width:24%;">适合的</a>
+    <a href="/material0/materials_to_me.php?type=bad&cate_name={{$cate_name}}" {{if $conf_type=='bad'}}class="actived"{{/if}} style="width:24%;">不适合的</a>
+</div>
+<div style="clear:both;"></div>
+<div class="tags" style="margin:5px;line-height:2;">
+    {{foreach $category_sets as $_mset}}
+    <a href="/material0/materials_to_me.php?type={{$conf_type}}&cate_name={{$_mset}}" {{if $cate_name==$_mset}}class="actived"{{/if}} >{{$_mset}}</a>
+    {{/foreach}}
+</div>
+<div style="clear:both;"></div>
+
+<div class="weui-panel__bd" style="border-top:1px solid #E5E5E5;margin-top:5px;">
+    {{foreach $materials as $material}}
+    {{*<a href="/material0/material_detail.php?mid={{$material.id}}" class="weui-media-box weui-media-box_appmsg">*}}
+    <a href="#" class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__hd" style="width:100px;height:100px;">
+            <img class="weui-media-box__thumb" src="{{$material.picurl}}" alt="">
+        </div>
+        <div class="weui-media-box__bd">
+            <h4 class="weui-media-box__title" style="font-size:20px;margin-bottom:3px;">
+                {{$material.name}}
+                <img src="/i/selected.png" class="add_to_mine" data-name="{{$material.name}}"/>
+            </h4>
+            <p class="weui-media-box__desc" style="font-size:16px;margin-top:3px;">适合：
+                {{foreach $material._constitution_good as $_con=>$_val}}
+                <span>{{$_con}}</span>
+                {{if !$_con@last}},{{/if}}
+                {{/foreach}}
+            </p>
+            <p class="weui-media-box__desc" style="font-size:16px;margin-top:3px;">不适：
+                {{foreach $material._constitution_bad as $_con=>$_val}}
+                <span>{{$_con}}</span>
+                {{if !$_con@last}},{{/if}}
+                {{/foreach}}
+            </p>
+            <p class="weui-media-box__desc" style="font-size:16px;margin-top:3px;">得分：{{$material._score}}</p>
+        </div>
+    </a>
+    {{/foreach}}
+</div>
+
+
+<style>
+.tags a {
+    display: block;
+    float: left;
+    border: 1px solid #e7e5e5;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: .3rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 1.55%;
+    font-size: 14px;
+    color: #999;
+    margin: 2px 3px 1px;
+    width: 22%;
+}
+.tags a.actived {
+    background-color:#eee;
+    color:red;
+}
+
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+.pagination>li {
+    display: inline;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+.pagination>li>a, .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+.weui-media-box__title img {
+    float: right;
+    padding: 3px 0 0 8px;
+    vertical-align: middle;
+}
+</style>
+
+<script>
+    $('.add_to_mine').on('click', function(e){
+        e.preventDefault();
+        if (!window.confirm('添加到我的食材？')) {
+            return;
+        }
+
+        var tgt = $(e.currentTarget);
+        var material = tgt.data('name');
+        var act = 'add';
+        var param = {material : material, act:act, from:'mine'};
+        K.post('/material0/ajax/material_mine_act.php', param, function (res){
+            alert('添加成功');
+        });
+    });
+</script>

@@ -1,0 +1,46 @@
+<section class="top_menu">
+  <div class="menu_list f20" id="menuList">
+    <ul>
+      {{foreach $main_categorys as $cateName}}
+      <li {{if $cateName == $cate_name}} class="active"{{/if}}>
+        <a href="/material/material_user.php?cate_name={{$cateName}}"><span>{{$cateName}}</span></a>
+      </li>
+      {{/foreach}}
+    </ul>
+  </div>
+  <button id="rollBtn" type="button"></button>
+</section>
+
+<section class="container bg_white">
+  <div class="title_mine f16">
+    <span>根据：<em>{{$_user.name}}</em>的体质计算</span>
+  </div>
+  
+  {{foreach $material_list as $_type => $materialInfo}}
+  {{if !empty($materialInfo.list)}}
+  <div class="md mdp2">
+    <div class="hd {{$materialInfo.color}} f18">
+      <span>{{$materialInfo.title}}</span>
+    </div>
+    <ul {{if $_type == 'bad'}}style="background-color: #eee;"{{/if}}>
+      {{foreach $materialInfo.list as $material}}
+      <li scr="{{$material._score}}">
+        <a href="/material/material_detail.php?mid={{$material.id}}" style="padding:0.4rem 0 0.5rem 0;">
+          <div class="pic_round"><img src="{{$material.picurl}}"></div>
+          <div class="info2 f13">
+            <h3 class="f18">{{$material.name}}</h3>
+            <div class="tags">
+              {{foreach $material._tcm_good_tags as $_tcm_tag}}
+              <span class="green"><b>{{$_tcm_tag}}</b></span>
+              {{/foreach}}
+            </div>
+            <p class="truncat">{{$material.nutrient_tags|default:''}}</p>
+          </div>
+        </a>
+      </li>
+      {{/foreach}}
+    </ul>
+  </div>
+  {{/if}}
+  {{/foreach}}
+</section>

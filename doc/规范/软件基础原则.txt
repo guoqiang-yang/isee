@@ -1,0 +1,35 @@
+我们目前代码原则(有优先级)：
+1、低耦合
+2、高复用
+3、可读性(容易理解，简洁)；
+4、可用性(方便使用)；
+5、可配置性；
+6、可扩展性；
+7、高效性；
+
+
+
+
+【参考】
+1、三个软件原则
+原则1：不做重复的事（Don’t Repeat Yourself，DRY原则）
+原则2：保持简单直接（Keep it Simple Stupid，KISS原则）
+原则3：不做目前不需要的事（You Ain’t Gonna Need It，YAGNI原则）
+
+原则1隐含：拆解、复用性
+原则2隐含：可维护性、可读性、低耦合
+原则3包含：功能、性能等方面?
+
+原文：
+《3 Key Software Principles You Must Understand》
+https://code.tutsplus.com/tutorials/3-key-software-principles-you-must-understand--net-25161
+翻译：
+https://blog.csdn.net/zj_show/article/details/8065836
+https://blog.csdn.net/zj_show/article/details/8071473
+https://blog.csdn.net/zj_show/article/details/8078447
+
+2、《编程思想——优秀代码的原则》
+        https://www.jianshu.com/p/3ca70788cba0
+        
+3、《程序员修炼之道——从小工到专家》
+
