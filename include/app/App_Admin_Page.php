@@ -38,33 +38,12 @@ class App_Admin_Page extends App_Admin_Web
     protected function setCssJs()
     {
         $this->csslist = array(//'css/index.css',
-            'css/plugins/custombox.min.css',
-
-            'css/bootstrap.min.css',
-            'css/icons.css',
-            'css/metismenu.min.css',
-            'css/style.css',
         );
 
         $this->headjslist = array(
-            'js/modernizr.min.js',
-            'js/jquery.min.js',
         );
 
         $this->footjslist = array(
-            'js/popper.min.js',
-            'js/bootstrap.min.js',
-            'js/metisMenu.min.js',
-            'js/waves.js',
-            'js/jquery.slimscroll.js',
-
-            'js/plugins/custombox.min.js',
-            'js/plugins/legacy.min.js',
-
-            'js/jquery.core.js',
-            'js/jquery.app.js',
-
-            'js/common/base.js',
         );
     }
 

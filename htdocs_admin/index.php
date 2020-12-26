@@ -1,3 +1,3 @@
 <?php
 
-echo 'hello world123';
+    header('location: /dashboard.php');

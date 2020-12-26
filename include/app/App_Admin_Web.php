@@ -16,13 +16,13 @@ class App_Admin_Web extends Base_App
 
     protected function checkAuth()
     {
-        $this->_uid = $this->getLoginUid();
-        // 已登录状态处理
-        if ($this->_uid)
-        {
-            //获取用户信息
-            $this->_user = Admin_Api::getStaff($this->_uid);
-        }
+//        $this->_uid = $this->getLoginUid();
+//        // 已登录状态处理
+//        if ($this->_uid)
+//        {
+//            //获取用户信息
+//            $this->_user = Admin_Api::getStaff($this->_uid);
+//
     }
 
     protected function setCommonPara()
@@ -34,14 +34,6 @@ class App_Admin_Web extends Base_App
 
         if ($this->_uid)
         {
-//            $roleLevels = Admin_Role_Api::getRoleLevels($this->_uid);
-//
-//            $this->smarty->assign("_isBuyer", isset($roleLevels[Conf_Admin::ROLE_BUYER]));
-//            $this->smarty->assign("_isSales", isset($roleLevels[Conf_Admin::ROLE_SALES]));
-//            $this->smarty->assign("_isDC", isset($roleLevels[Conf_Admin::ROLE_DC]));
-//            $this->smarty->assign("_isFinance", isset($roleLevels[Conf_Admin::ROLE_FINANCE]));
-//            $this->smarty->assign("_isAdmin", isset($roleLevels[Conf_Admin::ROLE_ADMIN]));
-//            $this->smarty->assign("_isOrg", isset($roleLevels[Conf_Admin::ROLE_ORG]));
         }
     }
 

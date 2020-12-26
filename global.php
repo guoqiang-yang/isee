@@ -3,8 +3,7 @@ include_once(dirname(__FILE__) . "/conf.php");
 include_once(dirname(__FILE__) . "/common.php");
 
 //autoload
-//function __autoload($className)
-function hls__autoload($className)
+function __autoload($className)
 {
 	//找到目录
 	$pos = strpos($className, '_');
@@ -30,18 +29,18 @@ function genFilePath($className)
     //old-model
     $paths = explode('_', $className, 2);
     $dir = strtolower($paths[0]);
-    $classFile = INCLUDE_PATH .	$dir . '/' . $className . '.php';
+    $classFile = INCLUDE_PATH .	'/'. $dir . '/' . $className . '.php';
 
     if (! file_exists($classFile)) {
         $paths = explode('_', $className, -1);
         $dirs = array_map(function($item){return strtolower($item);}, $paths);
-        $classFile = INCLUDE_PATH. implode('/', $dirs). '/'. $className. '.php';
+        $classFile = INCLUDE_PATH . '/'. implode('/', $dirs). '/'. $className. '.php';
     }
 
     return $classFile;
 }
 
-spl_autoload_register('hls__autoload');
+spl_autoload_register('__autoload');
 
 function my_assert_handler($file, $line, $code)
 {
