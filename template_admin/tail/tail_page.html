@@ -1,27 +1,21 @@
 
-      </div> <!-- container -->
-    
-    </div> <!-- content -->
-    
-    <footer class="footer text-right">
-      2020 - 2099 © ISHI. - www.ishi.com
-    </footer>
-  
+    </div>
+    </div>
+    <div class="layui-footer">
+      <!-- 底部固定区域 -->
+      © www.ynn00.com - To Discovery
+    </div>
   </div>
-  <!-- ============================================================== -->
-  <!-- End Right content here -->
-  <!-- ============================================================== -->
 
-  </div>
-  
-  {{$footerJsHtml nofilter}}
-  
+  {{$jsHtml nofilter}}
   <script>
-    //写入子目录，子导航数据
-    $(document).ready(function(){
-      var subTitle = $('#shiSubTitleName').val();
-      $('#shiSubTitleArea').html(subTitle);
+    //JavaScript代码区域
+    layui.use('element', function(){
+      var element = layui.element;
+  
     });
   </script>
-</body>
+  
+  
+  </body>
 </html>

@@ -38,12 +38,14 @@ class App_Admin_Page extends App_Admin_Web
     protected function setCssJs()
     {
         $this->csslist = array(//'css/index.css',
+            'css/layui.css'
         );
 
         $this->headjslist = array(
         );
 
         $this->footjslist = array(
+            'js/layui/layui.js'
         );
     }
 
@@ -112,7 +114,6 @@ class App_Admin_Page extends App_Admin_Web
     protected function outputHead()
     {
         $this->title = empty($this->title) ? 'hls管理系统' : $this->title;
-
 
         list($module, $page) = $this->getCurrentPage();
 

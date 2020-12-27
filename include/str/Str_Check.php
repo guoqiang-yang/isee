@@ -75,7 +75,7 @@ class Str_Check
 		}
 		return true;
 	}
-    
+
     // 是否为简单的密码
     public static function isSimplePasswd($passwd, $mobile='')
     {
@@ -83,21 +83,21 @@ class Str_Check
         {
             return true;
         }
-        
+
         if (!empty($mobile) && $passwd==substr($mobile, -6))
         {
             return true;
         }
-        
+
         return false;
     }
-    
+
     /**
      * 检测当前的用户密码是否为简单密码 Md5密码.
-     * 
+     *
      * @param string $password
      * @param string $salt  不能为空，如果为空可使用方法 self::isSimplePasswd()
-     * @param string $mobile 
+     * @param string $mobile
      */
     public static function isSimplePasswd4User($password, $salt, $mobile)
     {
@@ -105,23 +105,23 @@ class Str_Check
         {
             return true;
         }
-        
+
         // 密码格式 md5($salt . ':' . $password)
         $simplePasswds = array(
             md5($salt. ':111111'),
             md5($salt. ':123456'),
         );
-        
+
         if (!empty($mobile))
         {
             $simplePasswds[] = md5($salt. ':'. substr($mobile, -6));
         }
-        
+
         if (in_array($password, $simplePasswds))
         {
             return true;
         }
-        
+
         return false;
     }
 
@@ -162,8 +162,27 @@ class Str_Check
 		return implode('', $result);
 	}
 
-	public static function isUTF8($string)
+	public static function isUTF8($str)
 	{
-		return mb_check_encoding($string, 'UTF-8');
+		//return mb_check_encoding($str, 'UTF-8');
+        $len = strlen($str);
+        for($i = 0; $i < $len; $i++){
+            $c = ord($str[$i]);
+            if ($c > 128) {
+                if (($c > 247)) return false;
+                elseif ($c > 239) $bytes = 4;
+                elseif ($c > 223) $bytes = 3;
+                elseif ($c > 191) $bytes = 2;
+                else return false;
+                if (($i + $bytes) > $len) return false;
+                while ($bytes > 1) {
+                    $i++;
+                    $b = ord($str[$i]);
+                    if ($b < 128 || $b > 191) return false;
+                    $bytes--;
+                }
+            }
+        }
+        return true;
 	}
 }

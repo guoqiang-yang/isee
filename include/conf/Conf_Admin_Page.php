@@ -4,32 +4,25 @@
  */
 class Conf_Admin_Page
 {
-    /**
-     * class_name: fi-air-play, fi-briefcase, fi-box, fi-bar-graph-2, fi-disc, fi-layout,
-     *              fi-share, fi-paper-stack, fi-clock, fi-map
-     */
-    private static $MODULES = array(
-        'material' => array(
-            'name' => '食材',
-            'class_name' => 'mdi mdi-corn',
-            'url' => '/material/material_list.php',
-        ),
-        'recipe' => array(
-            'name' => '烹饪',
-            'class_name' => 'mdi mdi-food-variant',
-            'sub_pages' => array(
-                array('name' => '菜谱列表', 'url' => '/recipe/recipe_list.php'),
-                array('name' => 'Todo', 'url' => '/recipe/recipe_search.php'),
-            ),
-        ),
-        'healthy' => array(
-            'name' => '中医理论',
-            'class_name' => 'mdi mdi-yin-yang',
-            'sub_pages' => array(
-                array('name' => '中医知识', 'url' => '/todo/todopage'),
-            ),
-        ),
-    );
+    private static $MODULES = [
+        'dashboard' => [
+            'name' => '总览',
+            'url' => '/dashboard.php',
+        ],
+        'test1' => [
+            'name' => '测试一',
+            'sub_pages' => [
+                ['name' => '测试1.1', 'url' => '/test/test11.php'],
+                ['name' => '测试1.2', 'url' => '/test/test12.php'],
+            ],
+        ],
+        'test2' => [
+            'name' => '测试二',
+            'sub_pages' => [
+                ['name' => '测试2', 'url' => '/test/test2.php'],
+            ],
+        ],
+    ];
 
     public static function getMODULES($suid, $suser)
     {

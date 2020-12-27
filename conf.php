@@ -14,9 +14,10 @@ define('BASE_HOST', '.ynn00.com');
 define('PIC_HOST', 'p'. BASE_HOST);
 define('WWW_HOST', 'www'. BASE_HOST);
 
-define('ADMIN_HOST', 'sa'. BASE_HOST);
-define('ADMIN_CSSJS_HOST', 'sa'. BASE_HOST);
-define('ADMIN_IMG_HOST', 'sa'. BASE_HOST);
+define('HOST_NAME', 'www');
+define('ADMIN_HOST', HOST_NAME. BASE_HOST);
+define('ADMIN_CSSJS_HOST', HOST_NAME. BASE_HOST);
+define('ADMIN_IMG_HOST', HOST_NAME. BASE_HOST);
 
 
 //路径

@@ -2,126 +2,79 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>{{if $title}}{{$title}}{{else}}黄老食{{/if}}</title>
+  <title>{{if $title}}{{$title}}{{else}}ISee{{/if}}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta content="健康是一场马拉松" name="description" />
+  <meta content="看到隐藏的秘密，发现伟大的规律" name="description" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  
-  <!-- App favicon -->
-  <link rel="shortcut icon" href="/i/favicon.ico">
   
   <!-- App css -->
   {{$cssHtml nofilter}}
-  {{$jsHtml nofilter}}
-
 </head>
 
-<body>
-  <div id="wrapper">
-    
-    <!-- Top Bar Start -->
-    <div class="topbar">
-      <!-- LOGO -->
-      <div class="topbar-left">
-        <a href="/dashboard.php" class="logo">
-          <span>
-            黄老食后台管理系统
-          </span>
-          <i>
-            <img src="/i/logo_sm.png" alt="" height="28">
-          </i>
-        </a>
+<body class="layui-layout-body">
+  <div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+      <div class="layui-logo">
+        <i><img src="/i/logo_sm.png" alt="" height="28"></i>
+        <span>To Discovery</span>
       </div>
-    
-      <nav class="navbar-custom">
-        <ul class="list-unstyled topbar-right-menu float-right mb-0">
-          
-          <!-- language -->
-          {{* include file="module/topbar/language.html" *}}
-          
-          <!-- notification -->
-          {{* include file="module/topbar/notify.html" *}}
-        
-          <!-- Chat -->
-          {{* include file="module/topbar/message.html" *}}
-          
-          <!-- Personal -->
-          {{include file="module/topbar/personal.html"}}
-      
-        </ul>
-        <ul class="list-inline menu-left mb-0">
-          <li class="float-left">
-            <button class="button-menu-mobile open-left waves-light waves-effect">
-              <i class="dripicons-menu"></i>
-            </button>
+      <!-- 头部区域（可配合layui已有的水平导航） -->
+      <!--<ul class="layui-nav layui-layout-left">-->
+        <!--{{foreach $modules as $module_info}}-->
+        <!--<li class="layui-nav-item">-->
+          <!--{{if !empty($module_info.url)}}-->
+          <!--<a href="{{$module_info.url}}">{{$module_info.name}}</a>-->
+          <!--{{else}}-->
+          <!--<a href="javascript:;">{{$module_info.name}}<span class="layui-nav-more"></span></a>-->
+          <!--<dl class="layui-nav-child layui-anim layui-anim-upbit">-->
+            <!--{{foreach $module_info.sub_pages as $sub_page_info}}-->
+            <!--<dd><a href="{{$sub_page_info.url}}">{{$sub_page_info.name}}</a></dd>-->
+            <!--{{/foreach}}-->
+          <!--</dl>-->
+          <!--{{/if}}-->
+        <!--</li>-->
+        <!--{{/foreach}}-->
+      <!--</ul>-->
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+          <a href="javascript:;">
+            <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+            贤心
+            <span class="layui-nav-more"></span></a>
+          <dl class="layui-nav-child">
+            <dd><a href="">基本资料</a></dd>
+            <dd><a href="">安全设置</a></dd>
+            <dd><a href="">退出</a></dd>
+          </dl>
+        </li>
+        <span class="layui-nav-bar"></span>
+      </ul>
+    </div>
+  
+    <div class="layui-side layui-bg-black">
+      <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+          {{foreach $modules as $module_info}}
+          <li class="layui-nav-item">
+            {{if !empty($module_info.url)}}
+            <a href="{{$module_info.url}}">{{$module_info.name}}</a>
+            {{else}}
+            <a href="javascript:;">{{$module_info.name}}<span class="layui-nav-more"></span></a>
+            <dl class="layui-nav-child">
+              {{foreach $module_info.sub_pages as $sub_page_info}}
+              <dd><a href="{{$sub_page_info.url}}">{{$sub_page_info.name}}</a></dd>
+              {{/foreach}}
+            </dl>
+            {{/if}}
           </li>
-  
-          <!-- search -->
-          {{* include file="module/topbar/search.html" *}}
+          {{/foreach}}
         </ul>
-      </nav>
-  
-    </div>
-    <!-- Top Bar End -->
-  
-    <!-- ========== Left Sidebar Start ========== -->
-    <div class="left side-menu">
-      <div class="slimscroll-menu" id="remove-scroll">
-        <!--- Sidemenu -->
-        <div id="sidebar-menu">
-          <!-- Left Menu Start -->
-          <ul class="metismenu" id="side-menu">
-            <li class="menu-title">Navigation</li>
-            
-            {{foreach $modules as $module_info}}
-            <li>
-              <a href="{{if !empty($module_info.url)}}{{$module_info.url}}{{else}}javascript: void(0);{{/if}}">
-                <i class="{{if !empty($module_info.class_name)}}{{$module_info.class_name}}{{else}}fi-paper-stack{{/if}}"></i>
-                <span>{{$module_info.name}}</span>
-                
-                {{if !empty($module_info.sub_pages)}}
-                <ul class="nav-second-level collapse" aria-expanded="false">
-                  {{foreach $module_info.sub_pages as $subpage_info}}
-                  <li><a href="{{$subpage_info.url}}">{{$subpage_info.name}}</a></li>
-                  {{/foreach}}
-                </ul>
-                {{/if}}
-              </a>
-            </li>
-            {{/foreach}}
-          </ul>
-      
-        </div>
-        <!-- Sidebar -->
-        <div class="clearfix"></div>
-    
-      </div>
-      <!-- Sidebar -left -->
-    </div>
-    <!-- Left Sidebar End -->
-    
-    <!-- ============================================================== -->
-    <!-- Start right Content here -->
-    <!-- ============================================================== -->
-    <div class="content-page">
-      <!-- Start content -->
-      <div class="content">
-        <div class="container-fluid">
         
-          <div class="row">
-            <div class="col-12">
-              <div class="page-title-box">
-                <h4 id="shiSubTitleArea" class="page-title float-left">Default Sub Title</h4>
-                <ol id="shiSubNaviArea" class="breadcrumb float-right" style="display:none;"></ol>
+      </div>
+    </div>
   
-                <!--ol class="breadcrumb float-right">
-                  <li class="breadcrumb-item"><a href="#">Abstack</a></li>
-                  <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                  <li class="breadcrumb-item active">Responsive Table</li>
-                </ol-->
-              
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
-          <!-- end row -->
+    <div class="layui-body">
+      <!-- 内容主体区域 -->
+      <div style="padding: 15px;">
+    
